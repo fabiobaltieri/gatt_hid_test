@@ -1,0 +1,14 @@
+# flash
+
+west build -p -b nrf52840dongle_nrf52840 ~/gatt_hid
+nrfutil pkg generate --hw-version 52 --sd-req=0x00 --application build/zephyr/zephyr.hex --application-version 1 blinky.zip
+nrfutil dfu usb-serial -pkg blinky.zip -p /dev/ttyACM0
+
+# clear bt pairings
+
+bt clear all
+
+# check kernel stacks and thead runtime
+
+kernel stacks
+kernel threads
